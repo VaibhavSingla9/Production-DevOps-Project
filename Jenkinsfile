@@ -45,5 +45,12 @@ pipeline{
                 sh "docker build -t production-devops-app:latest ."
             }
         }
+
+        stage("Trivy Security Scan") {
+            steps {
+                echo "Scanning Docker image for vulnerabilities"
+                sh "trivy image production-devops-app:latest"
+            }
+        }
     }
 }
