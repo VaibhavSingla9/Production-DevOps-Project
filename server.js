@@ -57,3 +57,5 @@ if (require.main === module) {
 }
 
 module.exports = app;
+
+// Testing Jenkins automatic build
