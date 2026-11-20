@@ -26,6 +26,19 @@ pipeline{
             }
         }
 
+        stage("SonarQube Analysis") {
+            steps {
+                withCredentials([string(credentialsId: 'sonarqube-token1', variable: 'SONAR_TOKEN')]) {
+                    sh '''
+                        sonar-scanner-npm \
+                          -Dsonar.host.url=http://localhost:9000 \
+                          -Dsonar.projectKey=production-devops-project
+                    '''
+                }
+            }
+        }
+
+
         stage("Build Docker Image"){
             steps{
                 echo "Building Docker Image"
