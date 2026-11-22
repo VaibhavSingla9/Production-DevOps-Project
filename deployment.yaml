@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: production-devops-deployment
+  namespace: production
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: production-devops-app
+  template:
+    metadata:
+      labels:
+        app: production-devops-app
+    spec:
+      imagePullSecrets:
+        - name: ecr-registry-secret
+      containers:
+        - name: production-devops-app
+          image: 510497448465.dkr.ecr.ap-south-1.amazonaws.com/production-devops-app:latest
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: production-devops-config
+            - secretRef:
+                name: production-devops-secret
