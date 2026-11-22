@@ -6,6 +6,7 @@ pipeline{
         AWS_REGION = 'ap-south-1'
         ECR_URI = '510497448465.dkr.ecr.ap-south-1.amazonaws.com/production-devops-app'
         DOCKER_CONFIG = '/Users/vaibhav/.docker-jenkins'
+        DOCKER_HOST = 'unix:///Users/vaibhav/.docker/run/docker.sock'
     }
     stages{
         stage("checkout"){
